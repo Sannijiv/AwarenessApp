@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "423834531919",
+    "firebase_url": "https://awareness-lamp.firebaseio.com",
+    "project_id": "awareness-lamp",
+    "storage_bucket": "awareness-lamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423834531919:android:bb10767af0e26a36",
+        "android_client_info": {
+          "package_name": "com.example.sanjiv.awarenessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423834531919-rq33dn39ke103o2dppt3j6qrgap56ge5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sanjiv.awarenessapp",
+            "certificate_hash": "4d35fd0d6a5f30cff204664a41d00aaa80412bd0"
+          }
+        },
+        {
+          "client_id": "423834531919-a7f3bj6p4q0j3cpsi2m684kmevatl1dh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC1R5JFPLf2iRg4Zec3cCt3nKcGTK_f6E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423834531919-a7f3bj6p4q0j3cpsi2m684kmevatl1dh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
