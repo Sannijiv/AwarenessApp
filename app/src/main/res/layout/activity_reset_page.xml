@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResetPage"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/resetEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:hint="Emailadres"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#aaaaaa"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/confirmReset"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Vraag reset aan"
+        />
+
+    <TextView
+        android:id="@+id/resetToLogin"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Terug naar loginscherm"
+        android:textAlignment="center"
+        android:textColor="#afb9ff"
+        android:textSize="14sp"
+        />
+</LinearLayout>

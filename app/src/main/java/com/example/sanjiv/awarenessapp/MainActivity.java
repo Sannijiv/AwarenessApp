@@ -1,5 +1,6 @@
 package com.example.sanjiv.awarenessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,13 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -108,10 +115,24 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Hulp en Info");
 
+        } else if (id == R.id.logout){
+            mAuth.signOut();
+            finish();
+            startActivity(new Intent(MainActivity.this, Login.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() == null){
+            finish();
+            startActivity(new Intent(this, Login.class));
+        }
     }
 }
