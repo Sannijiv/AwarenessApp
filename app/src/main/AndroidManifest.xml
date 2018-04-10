@@ -30,7 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registration" />
-        <activity android:name=".ResetPage"></activity>
+        <activity android:name=".ResetPage" />
+        <activity android:name=".LampAdapter" />
+        <activity android:name=".LampDetails"></activity>
     </application>
 
 </manifest>

@@ -49,7 +49,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         confirmation.setOnClickListener(this);
 
-        //Terug naar loginscherm
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +58,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    /**
-     * Registers user
-     */
     private void registerUser() {
 
         email = emailInput.getText().toString().trim();
@@ -87,12 +83,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        //Laat dialoog zien dat de gebruiker weet dat de registratie bezig is
         progressDialog.setMessage("Bezig met registreren");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        //Maakt een Normaal account aan. ingevulde email en wachtwoord wordt opgehaald
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -111,11 +105,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    /**
-     * Button functions
-     *
-     * @param v View
-     */
+
     @Override
     public void onClick(View v) {
         if (v == confirmation) {

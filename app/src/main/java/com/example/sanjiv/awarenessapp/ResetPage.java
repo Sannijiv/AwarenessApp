@@ -51,11 +51,7 @@ public class ResetPage extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    /**
-     * @author BOOT-05
-     * <p>
-     * Sends email with passwordreset link
-     */
+
     private void passwordReset() {
         String email = emailInput.getText().toString().trim();
 
