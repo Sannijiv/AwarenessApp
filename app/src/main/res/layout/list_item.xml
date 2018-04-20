@@ -39,38 +39,20 @@
                 android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/lampPixel0"
+                android:id="@+id/lampHuidigeDecibel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="fonts/Roboto-Regular.ttf"
-                android:text="Lamppixel0"
+                android:text="Huidige geluidsniveau"
                 android:textColor="#333333"
                 android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/lampPixel1"
+                android:id="@+id/lampMaxDecibel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="fonts/Roboto-Regular.ttf"
-                android:text="Lamppixel1"
-                android:textColor="#333333"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/lampPixel2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="fonts/Roboto-Regular.ttf"
-                android:text="Lamppixel2"
-                android:textColor="#333333"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/lampPixel3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="fonts/Roboto-Regular.ttf"
-                android:text="Lamppixel3"
+                android:text="Max geluidsniveau"
                 android:textColor="#333333"
                 android:textSize="14dp" />
 

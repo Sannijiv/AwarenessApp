@@ -30,7 +30,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:hint="Lampnaam"
-        android:textColor="#ffffff"
+        android:textColor="?android:attr/colorForeground"
         android:textColorHint="#aaaaaa"
         android:textSize="14sp" />
 
@@ -42,8 +42,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:hint="Maximaal toegestaan geluid in Db"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:textColorHint="#aaaaaa"
         android:textSize="14sp" />
 

@@ -1,6 +1,8 @@
 package com.example.sanjiv.awarenessapp;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -21,12 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lampen extends Fragment {
+public class Lampen extends Fragment implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private FirebaseDatabase database;
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private FloatingActionButton add;
     List<LampModel> lampList;
     LampAdapter adapter;
 
@@ -40,6 +43,8 @@ public class Lampen extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_lampen, null);
 
+        add = v.findViewById(R.id.fab);
+        add.setOnClickListener(this);
         recyclerView = (RecyclerView) v.findViewById(R.id.lampView);
         recyclerView.setLayoutManager((new LinearLayoutManager(getActivity())));
 
@@ -75,5 +80,13 @@ public class Lampen extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == add){
+            Intent intent = new Intent(this.getContext(), AddLamp.class);
+            this.getContext().startActivity(intent);
+        }
     }
 }

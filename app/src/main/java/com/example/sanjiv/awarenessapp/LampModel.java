@@ -9,6 +9,17 @@ public class LampModel {
 
     }
 
+    public LampModel(String naam, int maxDecibel) {
+        this.naam = naam;
+        this.maxDecibel = maxDecibel;
+        this.huidigeDecibel = 0;
+        this.brightness = 0;
+        this.pixel0 = 0;
+        this.pixel1 = 0;
+        this.pixel2 = 0;
+        this.pixel3 = 0;
+    }
+
     public LampModel(int brightness, int huidigeDecibel, int maxDecibel, String naam, long pixel0, long pixel1, long pixel2, long pixel3) {
         this.brightness = brightness;
         this.huidigeDecibel = huidigeDecibel;

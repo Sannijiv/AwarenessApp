@@ -39,16 +39,15 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
     public void onBindViewHolder(@NonNull LampviewHolder holder, int position) {
         LampModel lampModel = lampList.get(position);
 
-        if (lampModel.getBrightness() > 50) {
+        if (lampModel.getHuidigeDecibel() > lampModel.getMaxDecibel()) {
             holder.lampCards.setCardBackgroundColor(Color.parseColor("#ff0000"));
         }
 
         holder.lampNaam.setText("Naam:" + lampModel.getNaam());
         holder.lampBrightness.setText("Brightness:" + lampModel.getBrightness());
-        holder.lampPixel0.setText("Pixel 0:" + lampModel.getPixel0());
-        holder.lampPixel1.setText("Pixel 1:" + lampModel.getPixel1());
-        holder.lampPixel2.setText("Pixel 2:" + lampModel.getPixel2());
-        holder.lampPixel3.setText("Pixel 3:" + lampModel.getPixel3());
+        holder.lampHuidigeDecibel.setText("Huidige geluidsniveau: " + lampModel.getHuidigeDecibel() + "db");
+        holder.lampMaxDecibel.setText("Maximale geluidsniveau: " + lampModel.getMaxDecibel() + "db");
+
 
     }
 
@@ -60,7 +59,7 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
 
     public static class LampviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView lampNaam, lampBrightness, lampPixel0, lampPixel1, lampPixel2, lampPixel3;
+        TextView lampNaam, lampBrightness, lampHuidigeDecibel, lampMaxDecibel, lampPixel2, lampPixel3;
         CardView lampCards;
         List<LampModel> lampList;
         Context ctx;
@@ -72,10 +71,8 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             v.setOnClickListener(this);
             lampNaam = v.findViewById(R.id.lampNaam);
             lampBrightness = v.findViewById(R.id.lampBrightness);
-            lampPixel0 = v.findViewById(R.id.lampPixel0);
-            lampPixel1 = v.findViewById(R.id.lampPixel1);
-            lampPixel2 = v.findViewById(R.id.lampPixel2);
-            lampPixel3 = v.findViewById(R.id.lampPixel3);
+            lampHuidigeDecibel = v.findViewById(R.id.lampHuidigeDecibel);
+            lampMaxDecibel = v.findViewById(R.id.lampMaxDecibel);
             lampCards = v.findViewById(R.id.Lamp);
         }
 
