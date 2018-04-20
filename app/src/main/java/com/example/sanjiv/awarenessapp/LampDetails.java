@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class LampDetails extends AppCompatActivity {
 
-    private TextView naam, brightness, pixel0, pixel1, pixel2, pixel3;
+    private TextView naam, brightness, pixel0, pixel1, pixel2, pixel3, maxDecibel, huidigeDecibel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,8 @@ public class LampDetails extends AppCompatActivity {
 
         naam = findViewById(R.id.naamLamp);
         brightness = findViewById(R.id.brightnessLamp);
+        maxDecibel = findViewById(R.id.MaxDecibel);
+        huidigeDecibel = findViewById(R.id.HuidigeDecibel);
         pixel0 = findViewById(R.id.pixel0Lamp);
         pixel1 = findViewById(R.id.pixel1Lamp);
         pixel2 = findViewById(R.id.pixel2Lamp);
@@ -29,6 +31,8 @@ public class LampDetails extends AppCompatActivity {
 
         naam.setText(getIntent().getStringExtra("naam"));
         brightness.setText(getIntent().getStringExtra("brightness"));
+        maxDecibel.setText(getIntent().getStringExtra("maxDecibel"));
+        huidigeDecibel.setText(getIntent().getStringExtra("huidigeDecibel"));
         pixel0.setText(getIntent().getStringExtra("pixel0"));
         pixel1.setText(getIntent().getStringExtra("pixel1"));
         pixel2.setText(getIntent().getStringExtra("pixel2"));

@@ -2,6 +2,7 @@ package com.example.sanjiv.awarenessapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,10 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
 
     List<LampModel> lampList;
     Context ctx;
+
+    public LampAdapter() {
+        // Required Empty Constructor
+    }
 
     public LampAdapter(List<LampModel> lampList, Context ctx) {
         this.lampList = lampList;
@@ -34,7 +39,11 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
     public void onBindViewHolder(@NonNull LampviewHolder holder, int position) {
         LampModel lampModel = lampList.get(position);
 
-        holder.lampNaam.setText("Lamp");
+        if (lampModel.getBrightness() > 50) {
+            holder.lampCards.setCardBackgroundColor(Color.parseColor("#ff0000"));
+        }
+
+        holder.lampNaam.setText("Naam:" + lampModel.getNaam());
         holder.lampBrightness.setText("Brightness:" + lampModel.getBrightness());
         holder.lampPixel0.setText("Pixel 0:" + lampModel.getPixel0());
         holder.lampPixel1.setText("Pixel 1:" + lampModel.getPixel1());
@@ -76,12 +85,26 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             LampModel lampModel = this.lampList.get(position);
             Intent intent = new Intent(this.ctx, LampDetails.class);
 
-            intent.putExtra("naam", "Lamp");
-            intent.putExtra("brightness", lampModel.getBrightness());
-            intent.putExtra("pixel0", lampModel.getPixel0());
-            intent.putExtra("pixel1", lampModel.getPixel1());
-            intent.putExtra("pixel2", lampModel.getPixel2());
-            intent.putExtra("pixel3", lampModel.getPixel3());
+            String brightnessString, pixel0String, pixel1String, pixel2String, pixel3String, huidigeDecibelString, maxDecibelString;
+            brightnessString = String.valueOf(lampModel.getBrightness());
+            pixel0String = String.valueOf(lampModel.getPixel0());
+            pixel1String = String.valueOf(lampModel.getPixel1());
+            pixel2String = String.valueOf(lampModel.getPixel2());
+            pixel3String = String.valueOf(lampModel.getPixel3());
+            huidigeDecibelString = String.valueOf(lampModel.getHuidigeDecibel());
+            maxDecibelString = String.valueOf(lampModel.getMaxDecibel());
+
+
+            intent.putExtra("naam", lampModel.getNaam());
+
+            intent.putExtra("brightness", brightnessString);
+            intent.putExtra("pixel0", pixel0String);
+            intent.putExtra("pixel1", pixel1String);
+            intent.putExtra("pixel2", pixel2String);
+            intent.putExtra("pixel3", pixel3String);
+            intent.putExtra("huidigeDecibel", huidigeDecibelString);
+            intent.putExtra("maxDecibel", maxDecibelString);
+
             this.ctx.startActivity(intent);
 
         }
