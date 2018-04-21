@@ -2,14 +2,14 @@ package com.example.sanjiv.awarenessapp;
 
 public class LampModel {
     private int brightness, maxDecibel, huidigeDecibel;
-    private String naam;
+    private String naam, key;
     private long pixel0, pixel1, pixel2, pixel3;
 
     public LampModel() {
 
     }
 
-    public LampModel(String naam, int maxDecibel) {
+    public LampModel(String naam, int maxDecibel, String key) {
         this.naam = naam;
         this.maxDecibel = maxDecibel;
         this.huidigeDecibel = 0;
@@ -18,9 +18,10 @@ public class LampModel {
         this.pixel1 = 0;
         this.pixel2 = 0;
         this.pixel3 = 0;
+        this.key = key;
     }
 
-    public LampModel(int brightness, int huidigeDecibel, int maxDecibel, String naam, long pixel0, long pixel1, long pixel2, long pixel3) {
+    public LampModel(String naam, int brightness, int maxDecibel, int huidigeDecibel, long pixel0, long pixel1, long pixel2, long pixel3, String key) {
         this.brightness = brightness;
         this.huidigeDecibel = huidigeDecibel;
         this.maxDecibel = maxDecibel;
@@ -29,6 +30,15 @@ public class LampModel {
         this.pixel1 = pixel1;
         this.pixel2 = pixel2;
         this.pixel3 = pixel3;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public int getBrightness() {

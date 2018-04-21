@@ -33,7 +33,8 @@
         <activity android:name=".ResetPage" />
         <activity android:name=".LampAdapter" />
         <activity android:name=".LampDetails" />
-        <activity android:name=".AddLamp"></activity>
+        <activity android:name=".AddLamp" />
+        <activity android:name=".EditLamp"></activity>
     </application>
 
 </manifest>

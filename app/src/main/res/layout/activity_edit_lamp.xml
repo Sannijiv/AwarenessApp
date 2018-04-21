@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LampDetails">
+    tools:context=".EditLamp">
 
-    <TextView
+    <EditText
         android:id="@+id/naamLamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,19 +21,8 @@
         android:textSize="25dp"
         android:textStyle="bold" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="#880000" />
 
-
-    <TextView
+    <EditText
         android:id="@+id/brightnessLamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,22 +30,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Brightness: "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/pixel0Lamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,22 +45,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Pixel 0: "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/pixel1Lamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,22 +60,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Pixel 1: "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/pixel2Lamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,22 +75,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Pixel 2: "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/pixel3Lamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,22 +90,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Pixel 3: "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/HuidigeDecibel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -156,22 +105,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Huidige Decibel Waarde "
         android:textColor="#000"
         android:textSize="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:background="#9d9d9d" />
 
-    <TextView
+    <EditText
         android:id="@+id/MaxDecibel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,6 +120,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:inputType="number"
         android:fontFamily="fonts/Roboto-Regular.ttf"
         android:text="Maximale Decibel Waarde"
         android:textColor="#000"
@@ -188,7 +130,7 @@
         android:id="@+id/editLamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lamp bewerken" />
+        android:text="Voer veranderingen in!" />
 
 
 </LinearLayout>

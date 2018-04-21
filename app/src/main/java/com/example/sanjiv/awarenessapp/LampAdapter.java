@@ -93,7 +93,7 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
 
 
             intent.putExtra("naam", lampModel.getNaam());
-
+            intent.putExtra("key",lampModel.getKey());
             intent.putExtra("brightness", brightnessString);
             intent.putExtra("pixel0", pixel0String);
             intent.putExtra("pixel1", pixel1String);

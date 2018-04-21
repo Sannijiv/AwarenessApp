@@ -60,7 +60,7 @@ public class AddLamp extends AppCompatActivity implements View.OnClickListener {
         }
 
         String key = mDatabase.push().getKey();
-        LampModel lamp = new LampModel(naam, maxDecibel);
+        LampModel lamp = new LampModel(naam, maxDecibel, key);
         mDatabase.child("lampen").child(key).setValue(lamp);
         Toast.makeText(this, "Lamp toegevoegd", Toast.LENGTH_LONG).show();
 
