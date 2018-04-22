@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Instellingen" />
         <item
-            android:id="@+id/nav_info"
+            android:id="@+id/nav_notificaties"
             android:icon="@drawable/ic_book_black_24dp"
-            android:title="Hulp en Info" />
+            android:title="Lampnotificaties" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_book_black_24dp"

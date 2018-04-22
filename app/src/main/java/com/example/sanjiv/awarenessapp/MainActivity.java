@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Instellingen");
 
-        } else if (id == R.id.nav_info) {
-            fragmentClass = HulpEnInfo.class;
+        } else if (id == R.id.nav_notificaties) {
+            fragmentClass = LampNotificaties.class;
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
             } catch (Exception e) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-            getSupportActionBar().setTitle("Hulp en Info");
+            getSupportActionBar().setTitle("Lampnotificaties");
 
         } else if (id == R.id.logout){
             mAuth.signOut();

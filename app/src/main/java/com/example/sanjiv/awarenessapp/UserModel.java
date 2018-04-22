@@ -4,13 +4,19 @@ public class UserModel {
 
     private String userRole;
 
-    UserModel() {
+    public UserModel(){
 
     }
 
-    UserModel(String userRole) {
+    public UserModel(String userRole) {
         this.userRole = userRole;
     }
 
+    public String getUserRole() {
+        return userRole;
+    }
 
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 }

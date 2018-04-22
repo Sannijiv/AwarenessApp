@@ -17,7 +17,7 @@ public class AddLamp extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference mDatabase;
     EditText lampNaam, lampMaxDecibel;
     Button addLamp;
-    String naam;
+    String naam, maxDecibelString;
     int maxDecibel;
 
     @Override
@@ -39,14 +39,14 @@ public class AddLamp extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view == addLamp) {
             naam = lampNaam.getText().toString().trim();
-            maxDecibel = Integer.parseInt(lampMaxDecibel.getText().toString());
+            maxDecibelString = lampMaxDecibel.getText().toString();
 
-            AddLamp(naam, maxDecibel);
+            AddLamp(naam, maxDecibelString);
 
         }
     }
 
-    public void AddLamp(String naam, int maxDecibel) {
+    public void AddLamp(String naam, String maxDecibelString) {
 
 
         if (TextUtils.isEmpty(naam)) {
@@ -54,10 +54,12 @@ public class AddLamp extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        if (TextUtils.isEmpty(String.valueOf(maxDecibel))) {
+        if (TextUtils.isEmpty(maxDecibelString)) {
             Toast.makeText(this, "Max decibel veld is leeg!", Toast.LENGTH_LONG).show();
             return;
         }
+
+        maxDecibel = Integer.parseInt(maxDecibelString);
 
         String key = mDatabase.push().getKey();
         LampModel lamp = new LampModel(naam, maxDecibel, key);

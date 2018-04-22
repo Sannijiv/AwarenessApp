@@ -8,12 +8,19 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LampDetails extends AppCompatActivity implements View.OnClickListener {
 
     private TextView naam, brightness, pixel0, pixel1, pixel2, pixel3, maxDecibel, huidigeDecibel;
-    private Button edit;
+    private Button edit, notify;
     Context ctx;
+
+    String key;
+    String lampNaam;
+    int lampBrightness, lampMaxDecibel, lampHuidigeDecibel;
+    long lampPixel0, lampPixel1, lampPixel2, lampPixel3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +37,10 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
         pixel2 = findViewById(R.id.pixel2Lamp);
         pixel3 = findViewById(R.id.pixel3Lamp);
         edit = findViewById(R.id.editLamp);
+        notify = findViewById(R.id.addNotify);
 
         edit.setOnClickListener(this);
+        notify.setOnClickListener(this);
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
@@ -51,20 +60,41 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if(v == edit){
-            Intent intent = new Intent(this,EditLamp.class);
+        if (v == edit) {
+            Intent intent = new Intent(this, EditLamp.class);
 
             intent.putExtra("naam", getIntent().getStringExtra("naam"));
-            intent.putExtra("brightness",getIntent().getStringExtra("brightness"));
-            intent.putExtra("key",getIntent().getStringExtra("key"));
+            intent.putExtra("brightness", getIntent().getStringExtra("brightness"));
+            intent.putExtra("key", getIntent().getStringExtra("key"));
             intent.putExtra("pixel0", getIntent().getStringExtra("pixel0"));
             intent.putExtra("pixel1", getIntent().getStringExtra("pixel1"));
             intent.putExtra("pixel2", getIntent().getStringExtra("pixel2"));
             intent.putExtra("pixel3", getIntent().getStringExtra("pixel3"));
-            intent.putExtra("huidigeDecibel",getIntent().getStringExtra("huidigeDecibel"));
-            intent.putExtra("maxDecibel",getIntent().getStringExtra("maxDecibel"));
+            intent.putExtra("huidigeDecibel", getIntent().getStringExtra("huidigeDecibel"));
+            intent.putExtra("maxDecibel", getIntent().getStringExtra("maxDecibel"));
 
             this.startActivity(intent);
         }
+
+        if (v == notify) {
+            Intent intent = new Intent(this, AddNotifyLamp.class);
+
+            intent.putExtra("naam", getIntent().getStringExtra("naam"));
+            intent.putExtra("brightness", getIntent().getStringExtra("brightness"));
+            intent.putExtra("key", getIntent().getStringExtra("key"));
+            intent.putExtra("pixel0", getIntent().getStringExtra("pixel0"));
+            intent.putExtra("pixel1", getIntent().getStringExtra("pixel1"));
+            intent.putExtra("pixel2", getIntent().getStringExtra("pixel2"));
+            intent.putExtra("pixel3", getIntent().getStringExtra("pixel3"));
+            intent.putExtra("huidigeDecibel", getIntent().getStringExtra("huidigeDecibel"));
+            intent.putExtra("maxDecibel", getIntent().getStringExtra("maxDecibel"));
+
+            this.startActivity(intent);
+
+
+
+
+        }
     }
 }
+

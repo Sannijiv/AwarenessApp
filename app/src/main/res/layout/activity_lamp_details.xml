@@ -190,5 +190,12 @@
         android:layout_height="wrap_content"
         android:text="Lamp bewerken" />
 
+    <Button
+        android:id="@+id/addNotify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lamp notificatie krijgen" />
+
+
 
 </LinearLayout>

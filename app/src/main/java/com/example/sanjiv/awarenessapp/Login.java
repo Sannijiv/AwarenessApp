@@ -30,6 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.auth.api.Auth;
@@ -46,7 +47,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference databaseReference;
     private GoogleApiClient mGoogleApiClient;
-
+    private FirebaseDatabase mDatabase;
     private GoogleSignInClient mGoogleSignInClient;
     private EditText emailInput, passwordInput;
     private Button normalLogin, googleLogin;
@@ -60,7 +61,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         emailInput = findViewById(R.id.inputEmail);
         passwordInput = findViewById(R.id.inputPassword);
         normalLogin = findViewById(R.id.loginNormal);
@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
+        mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -158,6 +158,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            
+                            UserModel userModel = new UserModel("admin");
+                            mDatabase.getReference("users").child(user.getUid()).child("rollen").setValue(userModel);
                             finish();
                             startActivity(new Intent(Login.this, MainActivity.class));
                             Toast.makeText(Login.this,"Welkom!", Toast.LENGTH_SHORT).show();
