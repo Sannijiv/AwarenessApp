@@ -190,12 +190,21 @@
         android:layout_height="wrap_content"
         android:text="Lamp bewerken" />
 
-    <Button
-        android:id="@+id/addNotify"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lamp notificatie krijgen" />
+        android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/removeNotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Geen notificatie meer krijgen" />
 
+        <Button
+            android:id="@+id/addNotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notificaties krijgen !" />
+    </FrameLayout>
 
 </LinearLayout>

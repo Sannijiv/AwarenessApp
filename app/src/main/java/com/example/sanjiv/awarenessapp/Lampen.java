@@ -1,7 +1,6 @@
 package com.example.sanjiv.awarenessapp;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,10 +33,9 @@ public class Lampen extends Fragment implements View.OnClickListener {
     private FirebaseUser user;
     private DatabaseReference mDatabase;
     private FloatingActionButton add;
-    List<LampModel> lampList;
-    LampAdapter adapter;
-    boolean allowed;
-    String userRole;
+    private List<LampModel> lampList;
+    private LampAdapter adapter;
+    private String userRole;
 
     public Lampen() {
         // required empty constructor
@@ -92,35 +90,41 @@ public class Lampen extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == add) {
+            retrieveUserRole();
+        }
+    }
 
-            DatabaseReference ref_userRole = mDatabase.child("users").child(user.getUid()).child("rollen");
-            Log.d("ADebugTag", "Value: " + userRole);
-            ref_userRole.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserModel userM = dataSnapshot.getValue(UserModel.class);
-                    userRole = userM.getUserRole();
-                    Log.d("ADebugTag", "Value: " + userRole);
-                    if (userRole.equalsIgnoreCase("admin")) {
-                        allowed = true;
-                    } else{
-                        allowed = false;
-                    }
-                }
+    public void retrieveUserRole() {
+        DatabaseReference ref_userRole = mDatabase.child("users").child(user.getUid()).child("rollen");
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Getting Post failed, log a message
-                }
-            });
+        ref_userRole.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserModel userM = dataSnapshot.getValue(UserModel.class);
+                userRole = userM.getUserRole();
+                Log.d("Lamps", "Value from database: " + userRole);
+                checkAllowed();
+            }
 
-            if (allowed) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.d("Lamps", "credentialsUserRoleGet:failure", databaseError.toException());
+            }
+        });
+
+    }
+
+    public void checkAllowed() {
+        if (userRole != null) {
+            if (userRole.equalsIgnoreCase("admin")) {
                 Intent intent = new Intent(this.getContext(), AddLamp.class);
                 this.getContext().startActivity(intent);
-            } else{
-                Toast.makeText(getActivity(),"Geen rechten om een lamp toe te voegen",Toast.LENGTH_SHORT).show();
-
+            } else {
+                Toast.makeText(getActivity(), "Geen rechten om een lamp toe te voegen", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(getActivity(), "Geen rol verbonden aan user", Toast.LENGTH_SHORT).show();
         }
     }
 }

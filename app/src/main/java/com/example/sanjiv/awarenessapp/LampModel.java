@@ -4,6 +4,7 @@ public class LampModel {
     private int brightness, maxDecibel, huidigeDecibel;
     private String naam, key;
     private long pixel0, pixel1, pixel2, pixel3;
+    boolean notifyOn;
 
     public LampModel() {
 
@@ -19,6 +20,7 @@ public class LampModel {
         this.pixel2 = 0;
         this.pixel3 = 0;
         this.key = key;
+        this.notifyOn = false;
     }
 
     public LampModel(String naam, int brightness, int maxDecibel, int huidigeDecibel, long pixel0, long pixel1, long pixel2, long pixel3, String key) {
@@ -31,6 +33,28 @@ public class LampModel {
         this.pixel2 = pixel2;
         this.pixel3 = pixel3;
         this.key = key;
+        this.notifyOn = false;
+    }
+
+    public LampModel(String naam, int brightness, int maxDecibel, int huidigeDecibel, long pixel0, long pixel1, long pixel2, long pixel3, String key, boolean notifyOn) {
+        this.brightness = brightness;
+        this.huidigeDecibel = huidigeDecibel;
+        this.maxDecibel = maxDecibel;
+        this.naam = naam;
+        this.pixel0 = pixel0;
+        this.pixel1 = pixel1;
+        this.pixel2 = pixel2;
+        this.pixel3 = pixel3;
+        this.key = key;
+        this.notifyOn = notifyOn;
+    }
+
+    public boolean isNotifyOn() {
+        return notifyOn;
+    }
+
+    public void setNotifyOn(boolean notifyOn) {
+        this.notifyOn = notifyOn;
     }
 
     public String getKey() {

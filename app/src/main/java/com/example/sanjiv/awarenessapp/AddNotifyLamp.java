@@ -39,7 +39,7 @@ public class AddNotifyLamp extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        LampModel lamp = new LampModel(lampNaam, lampBrightness, lampMaxDecibel, lampHuidigeDecibel, lampPixel0, lampPixel1, lampPixel2, lampPixel3, key);
+        LampModel lamp = new LampModel(lampNaam, lampBrightness, lampMaxDecibel, lampHuidigeDecibel, lampPixel0, lampPixel1, lampPixel2, lampPixel3, key, true);
         mDatabase.child("users").child(user.getUid()).child("lampnotificaties").child(key).setValue(lamp);
 
         Toast.makeText(this, "Lamp toegevoegd aan notificatielijst", Toast.LENGTH_LONG).show();

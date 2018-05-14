@@ -1,7 +1,12 @@
 package com.example.sanjiv.awarenessapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -10,8 +15,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -19,6 +26,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;
+    FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +47,27 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Als er op de notificatie gedrukt is wordt er doorverwezen naar de lampnotificatie fragment
+        fragmentManager = getSupportFragmentManager();
+        String menuFragment = getIntent().getStringExtra("menuFragment");
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        if (menuFragment != null) {
+            if (menuFragment.equals("nav_notificaties")) {
+                fragmentClass = LampNotificaties.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+                getSupportActionBar().setTitle("Lampnotificaties");
+            }
+        }
+
     }
 
     @Override
@@ -77,7 +107,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         Fragment fragment = null;
         Class fragmentClass = null;
@@ -115,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Lampnotificaties");
 
-        } else if (id == R.id.logout){
+        } else if (id == R.id.logout) {
             mAuth.signOut();
             finish();
             startActivity(new Intent(MainActivity.this, Login.class));
@@ -130,9 +160,24 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        if(mAuth.getCurrentUser() == null){
+        if (mAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, Login.class));
         }
     }
+
+    public void onResume() {
+        super.onResume();
+        int minutes = 1;
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Intent i = new Intent(this, NotificationService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, i, 0);
+        alarmManager.cancel(pendingIntent);
+        if (minutes > 0) {
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + minutes * 60 * 1000, minutes * 60 * 1000, pendingIntent);
+        }
+    }
+
+
 }

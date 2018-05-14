@@ -1,22 +1,31 @@
 package com.example.sanjiv.awarenessapp;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder> {
 
     List<LampModel> lampList;
     Context ctx;
+    int unique;
+    String TAG = "LampAdapter";
 
     public LampAdapter() {
         // Required Empty Constructor
@@ -39,9 +48,12 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
     public void onBindViewHolder(@NonNull LampviewHolder holder, int position) {
         LampModel lampModel = lampList.get(position);
 
+
+        //Check voor decibelniveau
         if (lampModel.getHuidigeDecibel() > lampModel.getMaxDecibel()) {
             holder.lampCards.setCardBackgroundColor(Color.parseColor("#ff0000"));
         }
+
 
         holder.lampNaam.setText("Naam:" + lampModel.getNaam());
         holder.lampBrightness.setText("Brightness:" + lampModel.getBrightness());
@@ -82,7 +94,7 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             LampModel lampModel = this.lampList.get(position);
             Intent intent = new Intent(this.ctx, LampDetails.class);
 
-            String brightnessString, pixel0String, pixel1String, pixel2String, pixel3String, huidigeDecibelString, maxDecibelString;
+            String brightnessString, pixel0String, pixel1String, pixel2String, pixel3String, huidigeDecibelString, maxDecibelString,notifyOnString;
             brightnessString = String.valueOf(lampModel.getBrightness());
             pixel0String = String.valueOf(lampModel.getPixel0());
             pixel1String = String.valueOf(lampModel.getPixel1());
@@ -90,10 +102,10 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             pixel3String = String.valueOf(lampModel.getPixel3());
             huidigeDecibelString = String.valueOf(lampModel.getHuidigeDecibel());
             maxDecibelString = String.valueOf(lampModel.getMaxDecibel());
-
+            notifyOnString = String.valueOf(lampModel.isNotifyOn());
 
             intent.putExtra("naam", lampModel.getNaam());
-            intent.putExtra("key",lampModel.getKey());
+            intent.putExtra("key", lampModel.getKey());
             intent.putExtra("brightness", brightnessString);
             intent.putExtra("pixel0", pixel0String);
             intent.putExtra("pixel1", pixel1String);
@@ -101,6 +113,7 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             intent.putExtra("pixel3", pixel3String);
             intent.putExtra("huidigeDecibel", huidigeDecibelString);
             intent.putExtra("maxDecibel", maxDecibelString);
+            intent.putExtra("notifyOn", notifyOnString);
 
             this.ctx.startActivity(intent);
 
