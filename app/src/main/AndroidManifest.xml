@@ -46,7 +46,9 @@
         <activity
             android:name=".DeleteNotifyLamp"
             android:label="@string/title_activity_delete_notify_lamp"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PiDetails" />
+        <activity android:name=".PiEdit"></activity>
     </application>
 
 </manifest>

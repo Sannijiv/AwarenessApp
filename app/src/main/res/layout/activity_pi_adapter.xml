@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".PiAdapter">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/Pi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:id="@+id/piLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/piNaam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="fonts/Roboto-Regular.ttf"
+                android:text="Pinaam"
+                android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/piPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="fonts/Roboto-Regular.ttf"
+                android:text="Password"
+                android:textColor="#333333"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/piData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="fonts/Roboto-Regular.ttf"
+                android:text="New data:"
+                android:textColor="#333333"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/piUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="fonts/Roboto-Regular.ttf"
+                android:text="userid"
+                android:textColor="#333333"
+                android:textSize="14dp" />
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

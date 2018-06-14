@@ -3,10 +3,8 @@ package com.example.sanjiv.awarenessapp;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -15,10 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -32,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -47,6 +44,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_settings).setVisible(false);
 
 
         //Als er op de notificatie gedrukt is wordt er doorverwezen naar de lampnotificatie fragment
@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Lampen Overzicht");
 
-        } else if (id == R.id.nav_settings) {
-            fragmentClass = Settings.class;
+        } else if (id == R.id.nav_pis) {
+            fragmentClass = Pi.class;
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
             } catch (Exception e) {
@@ -132,7 +132,18 @@ public class MainActivity extends AppCompatActivity
             }
 
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-            getSupportActionBar().setTitle("Instellingen");
+            getSupportActionBar().setTitle("Raspberry Pi's");
+
+        } else if (id == R.id.nav_statistics) {
+            fragmentClass = Statistics.class;
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            getSupportActionBar().setTitle("Statistieken");
 
         } else if (id == R.id.nav_notificaties) {
             fragmentClass = LampNotificaties.class;
@@ -144,6 +155,17 @@ public class MainActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Lampnotificaties");
+
+        } else if (id == R.id.nav_settings) {
+            fragmentClass = Preferences.class;
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            getSupportActionBar().setTitle("Instellingen");
 
         } else if (id == R.id.logout) {
             mAuth.signOut();

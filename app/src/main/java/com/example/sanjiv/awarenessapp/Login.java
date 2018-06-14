@@ -1,6 +1,8 @@
 package com.example.sanjiv.awarenessapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,12 +28,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.gms.auth.api.Auth;
-
-import org.w3c.dom.Text;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -50,8 +44,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private FirebaseDatabase mDatabase;
     private GoogleSignInClient mGoogleSignInClient;
     private EditText emailInput, passwordInput;
-    private Button normalLogin, googleLogin;
-    private TextView passwordForgot, registerAccount;
+    private Button normalLogin, googleLogin, confirmLogin;
+    private TextView passwordForgot, registerAccount, toLogin;
 
 
     private ProgressDialog progressDialog;
@@ -61,12 +55,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        emailInput = findViewById(R.id.inputEmail);
-        passwordInput = findViewById(R.id.inputPassword);
-        normalLogin = findViewById(R.id.loginNormal);
-        googleLogin = findViewById(R.id.loginGoogle);
-        passwordForgot = findViewById(R.id.forgotPassword);
-        registerAccount = findViewById(R.id.createAccount);
+
+        normalLogin = findViewById(R.id.btnEmployee);
+        googleLogin = findViewById(R.id.btnGuest);
+        emailInput = findViewById(R.id.loginUsername);
+        passwordInput = findViewById(R.id.loginPassword);
+        confirmLogin = findViewById(R.id.btnConfirm);
+        passwordForgot= findViewById(R.id.forgotPassword);
+        registerAccount = findViewById(R.id.registerAccount);
+        toLogin = findViewById(R.id.toLogin);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -101,6 +98,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, ResetPage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        toLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Login.class);
                 startActivity(intent);
             }
         });
@@ -179,9 +186,45 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    public AlertDialog employeeCheckWithDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
 
+        final EditText edittext = new EditText(Login.this);
+        alert.setMessage("Voer de employee bevestiging code in");
+        alert.setTitle("Employee Code");
 
+        alert.setView(edittext);
 
+        alert.setPositiveButton("Bevestigen", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String code = edittext.getText().toString();
+                if(code.equalsIgnoreCase("123")){
+                    enableEmployeeLogin();
+                }
+            }
+        });
+
+        alert.setNegativeButton("Annuleren", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        });
+
+        return alert.create();
+
+    }
+
+    private void enableEmployeeLogin(){
+        emailInput.setVisibility(View.VISIBLE);
+        passwordInput.setVisibility(View.VISIBLE);
+        confirmLogin.setVisibility(View.VISIBLE);
+        normalLogin.setVisibility(View.GONE);
+        googleLogin.setVisibility(View.GONE);
+        passwordForgot.setVisibility(View.VISIBLE);
+        registerAccount.setVisibility(View.VISIBLE);
+        toLogin.setVisibility(View.VISIBLE);
+
+    }
 
     private void signInNormal() {
 
@@ -232,11 +275,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == normalLogin) {
-            signInNormal();
+           AlertDialog dialog = employeeCheckWithDialog();
+           dialog.show();
         }
 
         if (v == googleLogin) {
             signIn();
+        }
+
+        if(v == confirmLogin){
+            signInNormal();
+
         }
     }
 }

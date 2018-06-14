@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/backgroundtest" />
+        app:srcCompat="@drawable/background_test" />
 
     <Button
         android:id="@+id/btnEmployee"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/btnEmployeeImage" />
+        android:background="@drawable/btn_employee_image" />
 
     <Button
         android:id="@+id/btnGuest"
@@ -32,7 +32,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/btnGuestImage" />
+        android:background="@drawable/btn_guest_image" />
 
 
 </LinearLayout>

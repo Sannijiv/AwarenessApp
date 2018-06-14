@@ -7,16 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Settings extends Fragment {
+public class Statistics extends Fragment {
 
-    public Settings() {
+    public Statistics() {
         // required empty constructor
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_instellingen, null);
+        View v = inflater.inflate(R.layout.fragment_statistieken, null);
         return v;
     }
 
