@@ -1,9 +1,8 @@
 package com.example.sanjiv.awarenessapp;
 
 public class LampModel {
-    private int brightness, maxDecibel, huidigeDecibel;
+    private int maxDecibel, huidigeDecibel;
     private String naam, key;
-    private long pixel0, pixel1, pixel2, pixel3;
     boolean notifyOn;
 
     public LampModel() {
@@ -14,37 +13,22 @@ public class LampModel {
         this.naam = naam;
         this.maxDecibel = maxDecibel;
         this.huidigeDecibel = 0;
-        this.brightness = 0;
-        this.pixel0 = 0;
-        this.pixel1 = 0;
-        this.pixel2 = 0;
-        this.pixel3 = 0;
         this.key = key;
         this.notifyOn = false;
     }
 
-    public LampModel(String naam, int brightness, int maxDecibel, int huidigeDecibel, long pixel0, long pixel1, long pixel2, long pixel3, String key) {
-        this.brightness = brightness;
+    public LampModel(String naam, int maxDecibel, int huidigeDecibel, String key) {
         this.huidigeDecibel = huidigeDecibel;
         this.maxDecibel = maxDecibel;
         this.naam = naam;
-        this.pixel0 = pixel0;
-        this.pixel1 = pixel1;
-        this.pixel2 = pixel2;
-        this.pixel3 = pixel3;
         this.key = key;
         this.notifyOn = false;
     }
 
-    public LampModel(String naam, int brightness, int maxDecibel, int huidigeDecibel, long pixel0, long pixel1, long pixel2, long pixel3, String key, boolean notifyOn) {
-        this.brightness = brightness;
+    public LampModel(String naam, int maxDecibel, int huidigeDecibel,String key, boolean notifyOn) {
         this.huidigeDecibel = huidigeDecibel;
         this.maxDecibel = maxDecibel;
         this.naam = naam;
-        this.pixel0 = pixel0;
-        this.pixel1 = pixel1;
-        this.pixel2 = pixel2;
-        this.pixel3 = pixel3;
         this.key = key;
         this.notifyOn = notifyOn;
     }
@@ -65,9 +49,6 @@ public class LampModel {
         this.key = key;
     }
 
-    public int getBrightness() {
-        return brightness;
-    }
 
     public int getMaxDecibel() {
         return maxDecibel;
@@ -93,39 +74,5 @@ public class LampModel {
         this.naam = naam;
     }
 
-    public void setBrightness(int brightness) {
-        this.brightness = brightness;
-    }
 
-    public long getPixel0() {
-        return pixel0;
-    }
-
-    public void setPixel0(long pixel0) {
-        this.pixel0 = pixel0;
-    }
-
-    public long getPixel1() {
-        return pixel1;
-    }
-
-    public void setPixel1(long pixel1) {
-        this.pixel1 = pixel1;
-    }
-
-    public long getPixel2() {
-        return pixel2;
-    }
-
-    public void setPixel2(long pixel2) {
-        this.pixel2 = pixel2;
-    }
-
-    public long getPixel3() {
-        return pixel3;
-    }
-
-    public void setPixel3(long pixel3) {
-        this.pixel3 = pixel3;
-    }
 }

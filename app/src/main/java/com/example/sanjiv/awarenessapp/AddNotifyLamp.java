@@ -18,7 +18,7 @@ public class AddNotifyLamp extends AppCompatActivity {
     String key;
     String lampNaam;
     int lampBrightness, lampMaxDecibel, lampHuidigeDecibel;
-    long lampPixel0, lampPixel1, lampPixel2, lampPixel3;
+
 
 
     @Override
@@ -27,19 +27,14 @@ public class AddNotifyLamp extends AppCompatActivity {
         setContentView(R.layout.activity_add_notify_lamp);
 
         lampNaam = getIntent().getStringExtra("naam");
-        lampBrightness = Integer.parseInt(getIntent().getStringExtra("brightness"));
         lampMaxDecibel = Integer.parseInt(getIntent().getStringExtra("maxDecibel"));
         lampHuidigeDecibel = Integer.parseInt(getIntent().getStringExtra("huidigeDecibel"));
-        lampPixel0 = Long.parseLong(getIntent().getStringExtra("pixel0"));
-        lampPixel1 = Long.parseLong(getIntent().getStringExtra("pixel1"));
-        lampPixel2 = Long.parseLong(getIntent().getStringExtra("pixel2"));
-        lampPixel3 = Long.parseLong(getIntent().getStringExtra("pixel3"));
         key = getIntent().getStringExtra("key");
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        LampModel lamp = new LampModel(lampNaam, lampBrightness, lampMaxDecibel, lampHuidigeDecibel, lampPixel0, lampPixel1, lampPixel2, lampPixel3, key, true);
+        LampModel lamp = new LampModel(lampNaam, lampMaxDecibel, lampHuidigeDecibel, key, true);
         mDatabase.child("users").child(user.getUid()).child("lampnotificaties").child(key).setValue(lamp);
 
         Toast.makeText(this, "Lamp toegevoegd aan notificatielijst", Toast.LENGTH_LONG).show();

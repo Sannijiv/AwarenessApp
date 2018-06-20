@@ -78,8 +78,8 @@ public class PiEdit extends AppCompatActivity implements View.OnClickListener {
         key = getIntent().getStringExtra("key");
         newData = 1;
         PiModel pi = new PiModel(naam, password, newData, user.getUid(), key);
-        mDatabase.child("pis").child(key).setValue(pi);
-        Toast.makeText(this, "Pi bewerkt", Toast.LENGTH_LONG).show();
+        mDatabase.child("hubs").child(key).setValue(pi);
+        Toast.makeText(this, "Hub bewerkt", Toast.LENGTH_LONG).show();
 
         finish();
         startActivity(new Intent(this, MainActivity.class));

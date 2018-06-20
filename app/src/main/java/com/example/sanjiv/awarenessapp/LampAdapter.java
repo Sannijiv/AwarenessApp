@@ -56,7 +56,6 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
 
 
         holder.lampNaam.setText("Naam:" + lampModel.getNaam());
-        holder.lampBrightness.setText("Brightness:" + lampModel.getBrightness());
         holder.lampHuidigeDecibel.setText("Huidige geluidsniveau: " + lampModel.getHuidigeDecibel() + "db");
         holder.lampMaxDecibel.setText("Maximale geluidsniveau: " + lampModel.getMaxDecibel() + "db");
 
@@ -95,22 +94,13 @@ public class LampAdapter extends RecyclerView.Adapter<LampAdapter.LampviewHolder
             Intent intent = new Intent(this.ctx, LampDetails.class);
 
             String brightnessString, pixel0String, pixel1String, pixel2String, pixel3String, huidigeDecibelString, maxDecibelString,notifyOnString;
-            brightnessString = String.valueOf(lampModel.getBrightness());
-            pixel0String = String.valueOf(lampModel.getPixel0());
-            pixel1String = String.valueOf(lampModel.getPixel1());
-            pixel2String = String.valueOf(lampModel.getPixel2());
-            pixel3String = String.valueOf(lampModel.getPixel3());
+
             huidigeDecibelString = String.valueOf(lampModel.getHuidigeDecibel());
             maxDecibelString = String.valueOf(lampModel.getMaxDecibel());
             notifyOnString = String.valueOf(lampModel.isNotifyOn());
 
             intent.putExtra("naam", lampModel.getNaam());
             intent.putExtra("key", lampModel.getKey());
-            intent.putExtra("brightness", brightnessString);
-            intent.putExtra("pixel0", pixel0String);
-            intent.putExtra("pixel1", pixel1String);
-            intent.putExtra("pixel2", pixel2String);
-            intent.putExtra("pixel3", pixel3String);
             intent.putExtra("huidigeDecibel", huidigeDecibelString);
             intent.putExtra("maxDecibel", maxDecibelString);
             intent.putExtra("notifyOn", notifyOnString);

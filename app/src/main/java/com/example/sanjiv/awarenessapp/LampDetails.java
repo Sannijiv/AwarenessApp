@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LampDetails extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView naam, brightness, pixel0, pixel1, pixel2, pixel3, maxDecibel, huidigeDecibel;
+    private TextView naam, brightness, maxDecibel, huidigeDecibel;
     private Button edit, notify, removeNotify;
     private FirebaseDatabase database;
     private FirebaseAuth auth;
@@ -38,14 +38,8 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_lamp_details);
 
         naam = findViewById(R.id.naamLamp);
-        brightness = findViewById(R.id.brightnessLamp);
         maxDecibel = findViewById(R.id.MaxDecibel);
         huidigeDecibel = findViewById(R.id.HuidigeDecibel);
-        pixel0 = findViewById(R.id.pixel0Lamp);
-        pixel1 = findViewById(R.id.pixel1Lamp);
-        pixel2 = findViewById(R.id.pixel2Lamp);
-        pixel3 = findViewById(R.id.pixel3Lamp);
-
         edit = findViewById(R.id.editLamp);
         notify = findViewById(R.id.addNotify);
         removeNotify = findViewById(R.id.removeNotify);
@@ -68,13 +62,9 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
         getWindow().setLayout((int) (width * .95), (int) (height * .9));
 
         naam.setText(getIntent().getStringExtra("naam"));
-        brightness.setText(getIntent().getStringExtra("brightness"));
         maxDecibel.setText(getIntent().getStringExtra("maxDecibel"));
         huidigeDecibel.setText(getIntent().getStringExtra("huidigeDecibel"));
-        pixel0.setText(getIntent().getStringExtra("pixel0"));
-        pixel1.setText(getIntent().getStringExtra("pixel1"));
-        pixel2.setText(getIntent().getStringExtra("pixel2"));
-        pixel3.setText(getIntent().getStringExtra("pixel3"));
+
 
         isNotifyOn = Boolean.parseBoolean(getIntent().getStringExtra("notifyOn"));
 
@@ -100,12 +90,7 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
             Intent intent = new Intent(this, EditLamp.class);
 
             intent.putExtra("naam", getIntent().getStringExtra("naam"));
-            intent.putExtra("brightness", getIntent().getStringExtra("brightness"));
             intent.putExtra("key", getIntent().getStringExtra("key"));
-            intent.putExtra("pixel0", getIntent().getStringExtra("pixel0"));
-            intent.putExtra("pixel1", getIntent().getStringExtra("pixel1"));
-            intent.putExtra("pixel2", getIntent().getStringExtra("pixel2"));
-            intent.putExtra("pixel3", getIntent().getStringExtra("pixel3"));
             intent.putExtra("huidigeDecibel", getIntent().getStringExtra("huidigeDecibel"));
             intent.putExtra("maxDecibel", getIntent().getStringExtra("maxDecibel"));
 
@@ -116,12 +101,7 @@ public class LampDetails extends AppCompatActivity implements View.OnClickListen
             Intent intent = new Intent(this, AddNotifyLamp.class);
 
             intent.putExtra("naam", getIntent().getStringExtra("naam"));
-            intent.putExtra("brightness", getIntent().getStringExtra("brightness"));
             intent.putExtra("key", getIntent().getStringExtra("key"));
-            intent.putExtra("pixel0", getIntent().getStringExtra("pixel0"));
-            intent.putExtra("pixel1", getIntent().getStringExtra("pixel1"));
-            intent.putExtra("pixel2", getIntent().getStringExtra("pixel2"));
-            intent.putExtra("pixel3", getIntent().getStringExtra("pixel3"));
             intent.putExtra("huidigeDecibel", getIntent().getStringExtra("huidigeDecibel"));
             intent.putExtra("maxDecibel", getIntent().getStringExtra("maxDecibel"));
 

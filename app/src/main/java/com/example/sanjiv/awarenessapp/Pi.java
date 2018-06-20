@@ -58,7 +58,7 @@ public class Pi extends Fragment implements View.OnClickListener {
         user = auth.getCurrentUser();
         mDatabase = database.getReference();
 
-        database.getReference("pis").addValueEventListener(new ValueEventListener() {
+        database.getReference("hubs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 piList.removeAll(piList);

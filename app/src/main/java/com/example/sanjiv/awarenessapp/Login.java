@@ -83,6 +83,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         normalLogin.setOnClickListener(this);
         googleLogin.setOnClickListener(this);
+        confirmLogin.setOnClickListener(this);
 
         registerAccount.setOnClickListener(new View.OnClickListener() {
 
@@ -255,6 +256,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    UserModel userModel = new UserModel("admin");
+                    mDatabase.getReference("users").child(user.getUid()).child("rollen").setValue(userModel);
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
 

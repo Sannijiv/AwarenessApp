@@ -61,7 +61,7 @@ public class Lampen extends Fragment implements View.OnClickListener {
         user = auth.getCurrentUser();
         mDatabase = database.getReference();
 
-        database.getReference("lampen").addValueEventListener(new ValueEventListener() {
+        database.getReference("lamps").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 lampList.removeAll(lampList);

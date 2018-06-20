@@ -31,13 +31,9 @@ public class EditLamp extends AppCompatActivity implements View.OnClickListener 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         naam = findViewById(R.id.naamLamp);
-        brightness = findViewById(R.id.brightnessLamp);
         maxDecibel = findViewById(R.id.MaxDecibel);
         huidigeDecibel = findViewById(R.id.HuidigeDecibel);
-        pixel0 = findViewById(R.id.pixel0Lamp);
-        pixel1 = findViewById(R.id.pixel1Lamp);
-        pixel2 = findViewById(R.id.pixel2Lamp);
-        pixel3 = findViewById(R.id.pixel3Lamp);
+
         confirmEdit = findViewById(R.id.editLamp);
 
         confirmEdit.setOnClickListener(this);
@@ -48,13 +44,9 @@ public class EditLamp extends AppCompatActivity implements View.OnClickListener 
         getWindow().setLayout((int) (width * .95), (int) (height * .9));
 
         naam.setText(getIntent().getStringExtra("naam"));
-        brightness.setText(getIntent().getStringExtra("brightness"));
         maxDecibel.setText(getIntent().getStringExtra("maxDecibel"));
         huidigeDecibel.setText(getIntent().getStringExtra("huidigeDecibel"));
-        pixel0.setText(getIntent().getStringExtra("pixel0"));
-        pixel1.setText(getIntent().getStringExtra("pixel1"));
-        pixel2.setText(getIntent().getStringExtra("pixel2"));
-        pixel3.setText(getIntent().getStringExtra("pixel3"));
+
 
 
     }
@@ -64,11 +56,6 @@ public class EditLamp extends AppCompatActivity implements View.OnClickListener 
         if (v == confirmEdit) {
             if (TextUtils.isEmpty(naam.getText().toString().trim())) {
                 Toast.makeText(this, "Naamveld is leeg!", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (TextUtils.isEmpty(String.valueOf(brightness.getText().toString().trim()))) {
-                Toast.makeText(this, "Brightness veld is leeg!", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -82,25 +69,7 @@ public class EditLamp extends AppCompatActivity implements View.OnClickListener 
                 return;
             }
 
-            if (TextUtils.isEmpty(String.valueOf(pixel0.getText().toString().trim()))) {
-                Toast.makeText(this, "Pixel0 veld is leeg!", Toast.LENGTH_LONG).show();
-                return;
-            }
 
-            if (TextUtils.isEmpty(String.valueOf(pixel1.getText().toString().trim()))) {
-                Toast.makeText(this, "Pixel1 veld is leeg!", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (TextUtils.isEmpty(String.valueOf(pixel2.getText().toString().trim()))) {
-                Toast.makeText(this, "Pixel2 veld is leeg!", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            if (TextUtils.isEmpty(String.valueOf(pixel3.getText().toString().trim()))) {
-                Toast.makeText(this, "Pixel3 veld is leeg!", Toast.LENGTH_LONG).show();
-                return;
-            }
 
             EditLamp();
         }
@@ -108,17 +77,12 @@ public class EditLamp extends AppCompatActivity implements View.OnClickListener 
 
     public void EditLamp() {
         lampNaam = naam.getText().toString().trim();
-        lampBrightness = Integer.parseInt(brightness.getText().toString().trim());
         lampMaxDecibel = Integer.parseInt(maxDecibel.getText().toString().trim());
         lampHuidigeDecibel = Integer.parseInt(huidigeDecibel.getText().toString().trim());
-        lampPixel0 = Long.parseLong(pixel0.getText().toString().trim());
-        lampPixel1 = Long.parseLong(pixel1.getText().toString().trim());
-        lampPixel2 = Long.parseLong(pixel2.getText().toString().trim());
-        lampPixel3 = Long.parseLong(pixel3.getText().toString().trim());
         key = getIntent().getStringExtra("key");
 
-        LampModel lamp = new LampModel(lampNaam, lampBrightness, lampMaxDecibel, lampHuidigeDecibel, lampPixel0, lampPixel1, lampPixel2, lampPixel3, key);
-        mDatabase.child("lampen").child(key).setValue(lamp);
+        LampModel lamp = new LampModel(lampNaam, lampMaxDecibel, lampHuidigeDecibel, key);
+        mDatabase.child("lamps").child(key).setValue(lamp);
         Toast.makeText(this, "Lamp bewerkt", Toast.LENGTH_LONG).show();
 
         finish();
