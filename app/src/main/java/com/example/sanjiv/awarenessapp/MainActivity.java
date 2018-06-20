@@ -13,29 +13,41 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;
     FragmentManager fragmentManager;
+    String userRole;
+    FirebaseDatabase mDatabase;
+    FirebaseUser user;
+    Menu navigationMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        mDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        user = mAuth.getCurrentUser();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -45,9 +57,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.nav_settings).setVisible(false);
+        navigationMenu = navigationView.getMenu();
+        navigationMenu.findItem(R.id.nav_settings).setVisible(false);
+        navigationMenu.findItem(R.id.nav_map).setVisible(false);
 
+        retrieveUserRole();
 
         //Als er op de notificatie gedrukt is wordt er doorverwezen naar de lampnotificatie fragment
         fragmentManager = getSupportFragmentManager();
@@ -156,7 +170,11 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
             getSupportActionBar().setTitle("Lampnotificaties");
 
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_map) {
+            finish();
+            startActivity(new Intent(MainActivity.this, MapActivity.class));
+
+        }else if (id == R.id.nav_settings) {
             fragmentClass = Preferences.class;
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
@@ -190,7 +208,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onResume() {
         super.onResume();
-        int minutes = 1;
+        int minutes = 5;
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Intent i = new Intent(this, NotificationService.class);
@@ -201,5 +219,36 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void retrieveUserRole() {
+        DatabaseReference ref_userRole = mDatabase.getReference().child("users").child(user.getUid()).child("rollen");
+
+        ref_userRole.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserModel userM = dataSnapshot.getValue(UserModel.class);
+                userRole = userM.getUserRole();
+                Log.d("MainActivity", "Value from database: " + userRole);
+                updateDrawer();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.d("MainActivity", "credentialsUserRoleGet:failure", databaseError.toException());
+            }
+        });
+
+    }
+
+    private void updateDrawer() {
+        if(userRole.equalsIgnoreCase("guest")){
+            navigationMenu.findItem(R.id.nav_lamp).setVisible(false);
+            navigationMenu.findItem(R.id.nav_pis).setVisible(false);
+            navigationMenu.findItem(R.id.nav_notificaties).setVisible(false);
+            navigationMenu.findItem(R.id.nav_statistics).setVisible(false);
+            navigationMenu.findItem(R.id.nav_map).setVisible(true);
+
+        }
+    }
 
 }

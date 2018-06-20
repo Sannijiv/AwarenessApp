@@ -167,7 +167,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             
-                            UserModel userModel = new UserModel("admin");
+                            UserModel userModel = new UserModel("guest");
                             mDatabase.getReference("users").child(user.getUid()).child("rollen").setValue(userModel);
                             finish();
                             startActivity(new Intent(Login.this, MainActivity.class));

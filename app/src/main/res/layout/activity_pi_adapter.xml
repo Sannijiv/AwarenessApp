@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="fonts/Roboto-Regular.ttf"
                 android:text="Pinaam"
-                android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
+                android:drawableLeft="@drawable/ic_pi_icon_24dp"
                 android:textColor="#000"
                 android:textSize="16dp" />
 
